@@ -5,7 +5,7 @@ const cron = require('node-cron');
 const { exec } = require('child_process');
 
 cron.schedule('0 */1 * * *', () => {
-    exec('ts-node index.ts', (err, stdout, stderr) => {
+    exec('node index.ts', (err, stdout, stderr) => {
         if (err) {
             console.log(err);
             return;
