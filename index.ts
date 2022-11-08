@@ -3,19 +3,26 @@
 const puppeteer = require('puppeteer');
 const nodemailer = require('nodemailer');
 
-const url = 'https://chat.chatclay.com/app/5f20b9c83b820631fdb738eb';
+//add env variables
+require('dotenv').config();
+
+const password = process.env.PASSWORD;
+
+
+
+const url = 'https://www.google.com';
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'your email',
-        pass: 'APP password (it is different from the regular password)'
+        user: 'vyomgupta001@gmail.com',
+        pass:  password
     }
 });
 
 const mailOptions = {
-    from: 'sender email',
-    to: 'receiver email',
+    from: 'vyomgupta001@gmail.com',
+    to: 'vyomgupta31@gmail.com',
     subject: 'Server is Down',
     text: 'Please check and try to get it back as soon as possible'
 };
