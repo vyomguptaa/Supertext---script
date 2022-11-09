@@ -10,7 +10,7 @@ const password = process.env.PASSWORD;
 
 
 
-const url = 'https://www.google.com';
+const url = 'https://chat.chatclay.com/app/5f20b9c83b820631fdb738eb';
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -32,7 +32,7 @@ const mailOptions = {
     const page = await browser.newPage();
     await page.goto(url);
     const response = await page.goto(url);
-    if (response.status() === 200) {
+    if (response.status() === 400 || response.status() === 500) {
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 console.log(error);
@@ -40,7 +40,17 @@ const mailOptions = {
                 console.log('Email sent: ' + info.response);
             }
         });
+    
     }
+    //elseif status code is 304 or 200 the log server is up
+    else if(response.status() === 304 || response.status() === 200){
+        console.log('Server is up and running');
+    }
+    else {
+        console.log('error');
+    }
+
+
     await browser.close();
 })();
 
